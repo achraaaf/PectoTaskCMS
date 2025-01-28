@@ -20,12 +20,14 @@ A simple Content Management System (CMS) to manage words and phrases in a local 
 ## Installation
 
 1 - Install the required dependencies:
-
+```
 pip install -r requirements.txt
+```
 
 Run the application:
-
+```
 python app.py
+```
 
 Open the browser and navigate to http://127.0.0.1:5000 to access the CMS.
 
