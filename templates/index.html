@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Words List</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Words List</h1>
+        <form method="get" class="search-form">
+            <input type="text" name="search" placeholder="Search words..." value="{{ search }}">
+            <button type="submit">Search</button>
+        </form>
+    </header>
+
+    <main>
+        <table class="words-table">
+            <thead>
+                <tr>
+                    <th>Word</th>
+                    <th>Translation</th>
+                    <th>Example</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for word in words.items %}
+                <tr>
+                    <td>{{ word.word }}</td>
+                    <td>{{ word.translation }}</td>
+                    <td>{{ word.example_sentence }}</td>
+                    <td><a href="{{ url_for('edit_word', id=word.id) }}" class="edit-btn">Edit</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="pagination">
+            {% if words.has_prev %}
+                <a href="{{ url_for('index', page=words.prev_num, search=search) }}" class="pagination-btn">Previous</a>
+            {% endif %}
+            {% if words.has_next %}
+                <a href="{{ url_for('index', page=words.next_num, search=search) }}" class="pagination-btn">Next</a>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
